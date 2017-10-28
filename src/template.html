@@ -1,14 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Accessibilityless As Error</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Accessibilityless As Error</title>
 </head>
 <body>
-    {{#.}}
-        {{code}}
-    {{/.}}
+  <div class="container-fluid">
+    <br>
+    <h3>A.L.A.E - <small>AccessibilityLess As a Error</small> <br>  
+    <small><a href="#excluded"> Deficients Excluded </a></small> |  
+    <small><a href="#types"> Deficients Types </a></small> |
+    <small><a href="#error"> Errors </a></small> 
+    </h3>
+    <p>Developed by: Alane, Airton, Kewerson, Claudio<p>
+    <h4>Based on <a href="https://www.w3.org/TR/WCAG20/" target="_blank"> WCAG 2.0 </a></h4>
+    <hr>
+    <h4 id="excluded">Dificients Excluded:</h4>
+    <header class="row">
+    {{#probablyUsersAffected}}
+      <div class="col-sm-4" style="width: 20rem;">
+        <div class="card" style="margin:10px">
+          <div class="card-body">
+            <h4 class="card-title">{{excluded.name}}</h4>
+            <h6 class="card-subtitle mb-2">Probably users affected (by client base): {{excluded.probablyNumbersUsersAffected}}</h6>
+            <h6 class="card-subtitle mb-2">Users Excluded (by country): {{excluded.numbersOfUsers}}</h6>
+          </div>
+        </div>
+      </div>
+    {{/probablyUsersAffected}}  
+    </header>
+    <hr>
+    <h4 id="types">Dificients Types:</h4>
+    <header class="row">
+    {{#percentErrorsInDeficiencesByGuideline}}
+      <div class="col-sm-3" style="width: 20rem;">
+        <div class="card" style="margin:10px">
+          <div class="card-body">
+            <h4 class="card-title">{{deficient.name}}</h4>
+            <h6 class="card-subtitle mb-2">Errors (%): {{deficient.percentErrors}}%</h6>
+            <h6 class="card-subtitle mb-2">Errors Found: {{deficient.errorsFounds}}</h6>
+          </div>
+        </div>
+      </div>
+    {{/percentErrorsInDeficiencesByGuideline}}  
+    </header>
+    <hr id="error">
+    {{#errors}}
+      <h5><strong>WCAG CODE: <small>{{code}}</small></strong></h5>
+      <p><strong>Message:</strong> {{message}}<p>
+      <p><strong>Context:</strong> <code>{{context}}</code></p>
+      <p><strong>Element Selector:</strong> <code>{{selector}}</code></p>
+      <strong>W3C Solution:</strong> <a href="https://www.w3.org/TR/WCAG20-TECHS/{{technique}}.html" target="_blank">{{technique}}</a>
+      <hr>
+    {{/errors}}
+  </div>
 </body>
 </html>

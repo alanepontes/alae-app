@@ -57,14 +57,16 @@ Object.keys(deficienciesPopulationInPercent).forEach(function(key) {
     const probablyNumbersUsersAffected =  numbersOfUsers * arrDificienceAffectedTotal.filter(item => {
         return item.deficient.name === key
     }).shift().deficient.percentErrors/100;
-    
-    
-    probablyUsersAffected.push({
+   
+    const object = {};
+
+    object['excluded'] = {
         numbersOfUsers : numbersOfUsers.toFixed(2),
         probablyNumbersUsersAffected : probablyNumbersUsersAffected.toFixed(2), 
         name : key
-
-    });
+    } 
+    
+    probablyUsersAffected.push(object);
 });
 
 const result = {
