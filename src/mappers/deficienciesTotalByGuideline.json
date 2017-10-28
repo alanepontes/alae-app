@@ -1,6 +1,9 @@
 {
-  "VISUAL": 32,
-  "MOTOR": 17,
-  "AUDITIVO": 22,
-  "INTELECTUAL": 28
+    "VISUAL": 32,
+    "MOTOR": 17,
+    "AUDITIVO": 22,
+    "INTELECTUAL": 28,
+    "FINANCEIRO": 11,
+    "IDOSO": 19,
+    "EDUCATION": 10
 }

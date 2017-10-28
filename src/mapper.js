@@ -28,7 +28,7 @@ Object.keys(deficienciesTotalByGuideline).forEach(function(deficient) {
     const object = {};
     object[deficient] = 0;
     
-    const totalDeficient = deficienciesTotalByGuideline[deficient];
+    const totalItensGuidelineByDeficient = deficienciesTotalByGuideline[deficient];
     const countErrorByDeficienciesAffecteds = alertsByDeficienciesAffecteds.reduce(
         (total, item) => {
             if (item.deficiencies.indexOf(deficient) !== -1) {
@@ -38,10 +38,15 @@ Object.keys(deficienciesTotalByGuideline).forEach(function(deficient) {
         },
         0
     );    
-    object[deficient] = countErrorByDeficienciesAffecteds/totalDeficient*100;
+    object[deficient] = countErrorByDeficienciesAffecteds/totalItensGuidelineByDeficient*100;
+    object['errorsFounds'] = countErrorByDeficienciesAffecteds;
+    object['guideline'] = totalItensGuidelineByDeficient;
     arrDificienceAffectedTotal.push(object);
 }); 
 
-console.log(arrDificienceAffectedTotal);
+const result = {
+    'errors' : alertsByDeficienciesAffecteds.sort((a, b) => a.typeCode - b.typeCode),
+    'percentErrorsInDeficiencesByGuideline' : arrDificienceAffectedTotal 
+}
 
-fs.writeFileSync('./dist/result.json', JSON.stringify(alertsByDeficienciesAffecteds));
+fs.writeFileSync('./dist/result.json', JSON.stringify(result));

@@ -8,7 +8,6 @@
     "1.2.1": [
       "VISUAL",
       "AUDITIVO",
-      "TECH",
       "IDOSO"
     ],
     "1.2.2": [
@@ -34,7 +33,6 @@
     "1.3.3": [
       "VISUAL",
       "AUDITIVO",
-      "TECH",
       "FINANCEIRO",
       "IDOSO"
     ],
@@ -90,7 +88,6 @@
     "2.4.3": [
       "VISUAL",
       "INTELECTUAL",
-      "TECH",
       "FINANCEIRO",
       "IDOSO"
     ],
@@ -129,7 +126,6 @@
       "MOTOR",
       "AUDITIVO",
       "INTELECTUAL",
-      "TECH",
       "FINANCEIRO",
       "IDOSO", 
       "EDUCATION"
@@ -190,7 +186,6 @@
       "MOTOR",
       "AUDITIVO",
       "INTELECTUAL",
-      "TECH",
       "IDOSO"
     ],
     "3.2.4": [
@@ -206,7 +201,6 @@
       "MOTOR",
       "AUDITIVO",
       "INTELECTUAL",
-      "TECH",
       "FINANCEIRO",
       "IDOSO"
     ],
