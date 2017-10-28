@@ -8,8 +8,6 @@ const deficienciesTotalByGuideline = JSON.parse(fs.readFileSync('./src/mappers/d
 
 const totalUsersInApplication = JSON.parse(fs.readFileSync('./src/mappers/totalUsersInApplication.json', 'utf8'));
 
-
-
 const mappedCriteriaReport = report.map(item => {
     const code = item.code.split('.');
     item.standardName = code[0];

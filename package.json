@@ -4,9 +4,9 @@
   "description": "",
   "main": "src/mapper.js",
   "scripts": {
-    "mapper": "mkdir dist && node src/mapper.js",
-    "template": "mkdir dist && mustache ./dist/result.json ./src/template.html ./dist/output.html",
-    "build": "mkdir dist && node ./src/mapper.js && mustache ./dist/result.json ./src/template.html ./dist/output.html"
+    "mapper": "node src/mapper.js",
+    "template": "mustache ./dist/result.json ./src/template.html ./dist/output.html",
+    "build": "rm -r dist && mkdir dist && node ./src/mapper.js && mustache ./dist/result.json ./src/template.html ./dist/output.html"
   },
   "author": "",
   "license": "ISC",
