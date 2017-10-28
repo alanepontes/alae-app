@@ -1,7 +1,7 @@
 const fs = require('fs');
 const report = JSON.parse(fs.readFileSync('./src/report/report.json', 'utf8'));
 
-const deficienciesPopulation = JSON.parse(fs.readFileSync('./src/mappers/deficienciesPopulation.json', 'utf8'));
+const deficienciesPopulationInPercent = JSON.parse(fs.readFileSync('./src/mappers/deficienciesPopulationInPercent.json', 'utf8'));
 
 const deficienciesByGuideline = JSON.parse(fs.readFileSync('./src/mappers/deficienciesByGuideline.json', 'utf8'));
 const deficienciesTotalByGuideline = JSON.parse(fs.readFileSync('./src/mappers/deficienciesTotalByGuideline.json', 'utf8'));
@@ -26,7 +26,6 @@ let arrDificienceAffectedTotal = []
 Object.keys(deficienciesTotalByGuideline).forEach(function(deficient) {
     
     const object = {};
-    object[deficient] = 0;
     
     const totalItensGuidelineByDeficient = deficienciesTotalByGuideline[deficient];
     const countErrorByDeficienciesAffecteds = alertsByDeficienciesAffecteds.reduce(
@@ -38,15 +37,40 @@ Object.keys(deficienciesTotalByGuideline).forEach(function(deficient) {
         },
         0
     );    
-    object[deficient] = countErrorByDeficienciesAffecteds/totalItensGuidelineByDeficient*100;
-    object['errorsFounds'] = countErrorByDeficienciesAffecteds;
-    object['guideline'] = totalItensGuidelineByDeficient;
+    object['deficient'] = {
+        'name' : deficient,
+        'percentErrors' : (countErrorByDeficienciesAffecteds/totalItensGuidelineByDeficient*100).toFixed(2),
+        'errorsFounds' : countErrorByDeficienciesAffecteds,
+        'guideline' : totalItensGuidelineByDeficient
+    }
+
     arrDificienceAffectedTotal.push(object);
 }); 
 
+
+let probablyUsersAffected = [] 
+
+Object.keys(deficienciesPopulationInPercent).forEach(function(key) {
+    const totalPercentBydeficienciesPopulation = deficienciesPopulationInPercent[key];
+    
+    const numbersOfUsers = (totalPercentBydeficienciesPopulation/100) * totalUsersInApplication['TOTAL'];
+    const probablyNumbersUsersAffected =  numbersOfUsers * arrDificienceAffectedTotal.filter(item => {
+        return item.deficient.name === key
+    }).shift().deficient.percentErrors;
+    
+    
+    probablyUsersAffected.push({
+        numbersOfUsers : numbersOfUsers.toFixed(2),
+        probablyNumbersUsersAffected : probablyNumbersUsersAffected.toFixed(2), 
+        name : key
+
+    });
+});
+
 const result = {
     'errors' : alertsByDeficienciesAffecteds.sort((a, b) => a.typeCode - b.typeCode),
-    'percentErrorsInDeficiencesByGuideline' : arrDificienceAffectedTotal 
+    'percentErrorsInDeficiencesByGuideline' : arrDificienceAffectedTotal,
+    'probablyUsersAffected' : probablyUsersAffected
 }
 
 fs.writeFileSync('./dist/result.json', JSON.stringify(result));
