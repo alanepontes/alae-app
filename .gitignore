@@ -59,5 +59,6 @@ typings/
 
 # project
 dist/
+report.json
 result.json
 output.html
