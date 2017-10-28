@@ -58,6 +58,7 @@ typings/
 .env
 
 # project
+dist/
 report.json
 result.json
 output.html
