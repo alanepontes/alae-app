@@ -8,15 +8,18 @@ const deficienciesTotalByGuideline = JSON.parse(fs.readFileSync('./src/mappers/d
 
 const totalUsersInApplication = JSON.parse(fs.readFileSync('./src/mappers/totalUsersInApplication.json', 'utf8'));
 
-const mappedCriteriaReport = report.map(item => {
-    const code = item.code.split('.');
-    item.standardName = code[0];
-    item.principle = code[1];
-    item.guideline = code[2];
-    item.parsedCriteria = code[3].replace(/_/g,'.');
-    item.techniques = code[4].split(',');
-    item.affecteds = deficienciesByGuideline[item.parsedCriteria.toString()];
-    return item;
+const alertsByDeficienciesAffecteds = report.map(item => {
+    const regex = /\w+.\w+.\w+.(\d{1}_\d{1}_\d{1}).([A-Z]{1}[0-9]{2})/g;
+    const [_, code, technique ] = regex.exec(item.code);
+    
+    const alertByDeficiencieAffected = {}
+    alertByDeficiencieAffected.code = code.replace(/_/g, '.'); 
+    alertByDeficiencieAffected.technique = technique;
+    alertByDeficiencieAffected.deficiencies = deficienciesByGuideline[alertByDeficiencieAffected.code];
+    
+    const mergeAlertByDeficiencieAffected = Object.assign({}, item, alertByDeficiencieAffected);
+    
+    return mergeAlertByDeficiencieAffected;
 });
 
-fs.writeFileSync('./dist/result.json', JSON.stringify(mappedCriteriaReport));
+fs.writeFileSync('./dist/result.json', JSON.stringify(alertsByDeficienciesAffecteds));
