@@ -22,4 +22,23 @@ const alertsByDeficienciesAffecteds = report.map(item => {
     return mergeAlertByDeficiencieAffected;
 });
 
+let arrDificienceAffectedTotal = []
+Object.keys(deficienciesTotalByGuideline).forEach(function(deficient) {
+    const object = {};
+    const totalDeficient = deficienciesTotalByGuideline[deficient];
+    const countErrorByDeficienciesAffecteds = alertsByDeficienciesAffecteds.reduce(
+        (total, item) => {
+            if (item.deficiencies.indexOf(deficient) !== -1) {
+                total.deficient++;
+            }
+           
+            return obj[text] = total.deficient;
+        },
+        {deficient: 0}
+    );    
+    arrDificienceAffectedTotal.push(countErrorByDeficienciesAffecteds);
+}); 
+
+console.log(arrDificienceAffectedTotal);
+
 fs.writeFileSync('./dist/result.json', JSON.stringify(alertsByDeficienciesAffecteds));
