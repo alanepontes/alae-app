@@ -33,13 +33,12 @@ Object.keys(deficienciesTotalByGuideline).forEach(function(deficient) {
         (total, item) => {
             if (item.deficiencies.indexOf(deficient) !== -1) {
                 total++;
-            }
-           
+            }         
             return total;
         },
         0
     );    
-    object[deficient] = countErrorByDeficienciesAffecteds;
+    object[deficient] = countErrorByDeficienciesAffecteds/totalDeficient*100;
     arrDificienceAffectedTotal.push(object);
 }); 
 
