@@ -24,19 +24,23 @@ const alertsByDeficienciesAffecteds = report.map(item => {
 
 let arrDificienceAffectedTotal = []
 Object.keys(deficienciesTotalByGuideline).forEach(function(deficient) {
+    
     const object = {};
+    object[deficient] = 0;
+    
     const totalDeficient = deficienciesTotalByGuideline[deficient];
     const countErrorByDeficienciesAffecteds = alertsByDeficienciesAffecteds.reduce(
         (total, item) => {
             if (item.deficiencies.indexOf(deficient) !== -1) {
-                total.deficient++;
+                total++;
             }
            
-            return obj[text] = total.deficient;
+            return total;
         },
-        {deficient: 0}
+        0
     );    
-    arrDificienceAffectedTotal.push(countErrorByDeficienciesAffecteds);
+    object[deficient] = countErrorByDeficienciesAffecteds;
+    arrDificienceAffectedTotal.push(object);
 }); 
 
 console.log(arrDificienceAffectedTotal);
