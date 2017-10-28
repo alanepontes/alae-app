@@ -2,11 +2,11 @@
   "name": "alae-app",
   "version": "1.0.0",
   "description": "",
-  "main": "mapper.js",
+  "main": "./src/mapper.js",
   "scripts": {
-    "mapper": "node mapper.js",
-    "template": "mustache result.json template.html output.html",
-    "build": "node mapper.js && mustache result.json template.html output.html"
+    "mapper": "node ./src/mapper.js",
+    "template": "mustache result.json ./src/template.html output.html",
+    "build": "node ./src/mapper.js && mustache result.json ./src/template.html output.html"
   },
   "author": "",
   "license": "ISC",
