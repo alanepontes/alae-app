@@ -1,7 +1,7 @@
 const fs = require('fs');
 const report = JSON.parse(fs.readFileSync('./src/report/report.json', 'utf8'));
 
-const deficienciesPercentPopulation = JSON.parse(fs.readFileSync('./src/mappers/deficienciesPercentPopulation.json', 'utf8'));
+const deficienciesPopulation = JSON.parse(fs.readFileSync('./src/mappers/deficienciesPopulation.json', 'utf8'));
 
 const deficienciesByGuideline = JSON.parse(fs.readFileSync('./src/mappers/deficienciesByGuideline.json', 'utf8'));
 const deficienciesTotalByGuideline = JSON.parse(fs.readFileSync('./src/mappers/deficienciesTotalByGuideline.json', 'utf8'));
