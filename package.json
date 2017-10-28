@@ -1,0 +1,15 @@
+{
+  "name": "alae-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mapper.js",
+  "scripts": {
+    "mapper": "node mapper.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mustache": "^2.3.0"
+  }
+}
