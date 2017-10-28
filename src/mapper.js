@@ -56,7 +56,7 @@ Object.keys(deficienciesPopulationInPercent).forEach(function(key) {
     const numbersOfUsers = (totalPercentBydeficienciesPopulation/100) * totalUsersInApplication['TOTAL'];
     const probablyNumbersUsersAffected =  numbersOfUsers * arrDificienceAffectedTotal.filter(item => {
         return item.deficient.name === key
-    }).shift().deficient.percentErrors;
+    }).shift().deficient.percentErrors/100;
     
     
     probablyUsersAffected.push({
